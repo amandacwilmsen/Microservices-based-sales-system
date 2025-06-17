@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: vendas-route
+          uri: lb://vendas-monolito
+          predicates:
+            - Path=/api/vendas/**
+          filters:
+            - StripPrefix=2
+
+        - id: impostos-route
+          uri: lb://impostos-microservice
+          predicates:
+            - Path=/api/impostos/**
+          filters:
+            - StripPrefix=2
+
+        - id: registro-route
+          uri: lb://registro-microservice
+          predicates:
+            - Path=/api/registro/**
+          filters:
+            - StripPrefix=2
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,gateway
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
