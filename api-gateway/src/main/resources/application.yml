@@ -16,21 +16,21 @@ spring:
           predicates:
             - Path=/api/vendas/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: impostos-route
           uri: lb://impostos-microservice
           predicates:
             - Path=/api/impostos/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: registro-route
           uri: lb://registro-microservice
           predicates:
             - Path=/api/registro/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
 eureka:
   client:

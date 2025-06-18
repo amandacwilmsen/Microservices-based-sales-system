@@ -1,0 +1,5 @@
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/impostos-microservice/src/main/java/com/vendas/impostos/dto/CalculoImpostoRequest.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/impostos-microservice/src/main/java/com/vendas/impostos/dto/CalculoImpostoResponse.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/impostos-microservice/src/main/java/com/vendas/impostos/service/ImpostosService.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/impostos-microservice/src/main/java/com/vendas/impostos/ImpostosMicroserviceApplication.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/impostos-microservice/src/main/java/com/vendas/impostos/controller/ImpostosController.java
