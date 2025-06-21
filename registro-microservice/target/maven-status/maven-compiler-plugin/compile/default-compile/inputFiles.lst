@@ -1,0 +1,7 @@
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/dto/RelatorioMensalResponse.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/service/RegistroService.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/repository/VendaAprovadaRepository.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/dto/ConsultaPeriodoRequest.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/entity/VendaAprovada.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/controller/RegistroController.java
+/Users/amandacwilmsen/TFPAS/Microservices-based-sales-system/registro-microservice/src/main/java/com/vendas/registro/RegistroMicroserviceApplication.java

@@ -1,0 +1,7 @@
+com/vendas/registro/dto/RelatorioMensalResponse.class
+com/vendas/registro/repository/VendaAprovadaRepository.class
+com/vendas/registro/controller/RegistroController.class
+com/vendas/registro/RegistroMicroserviceApplication.class
+com/vendas/registro/service/RegistroService.class
+com/vendas/registro/dto/ConsultaPeriodoRequest.class
+com/vendas/registro/entity/VendaAprovada.class
