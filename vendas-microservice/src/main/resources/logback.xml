@@ -1,0 +1,17 @@
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- Reduzir logs do Spring ao nível WARN -->
+    <logger name="org.springframework" level="WARN" />
+
+    <!-- Manter logs do projeto no nível DEBUG -->
+    <logger name="com.vendas" level="DEBUG" />
+</configuration>
