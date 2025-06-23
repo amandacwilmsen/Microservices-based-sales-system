@@ -56,7 +56,9 @@ public class Orcamento {
         this.valorImpostos = valorImpostos;
         this.desconto = desconto;
         this.totalFinal = totalFinal;
+    }
 
+    // NOVO CONSTRUTOR NECESSÁRIO
     public Orcamento(Long id, String cliente, LocalDate dataCriacao, String estado, String pais,
                     List<ItemOrcamento> itens, boolean efetivado, double totalItens,
                     double impostoEstadual, double impostoFederal, double desconto, double totalFinal) {
@@ -71,7 +73,6 @@ public class Orcamento {
         this.valorImpostos = impostoEstadual + impostoFederal;
         this.desconto = desconto;
         this.totalFinal = totalFinal;
-    }
     }
 
     public BigDecimal getSubtotal() {
@@ -101,7 +102,7 @@ public class Orcamento {
         return totalFinal;
     }
 
-
+    // GETTERS E SETTERS
     public Long getId() {
         return this.id;
     }
@@ -161,6 +162,7 @@ public class Orcamento {
     public void setEfetivado(boolean efetivado) {
         this.efetivado = efetivado;
     }
+    
     public void setTotalItens(double totalItens) {
         this.totalItens = totalItens;
     }
@@ -189,15 +191,15 @@ public class Orcamento {
         this.totalFinal = totalFinal;
     }
     
-
     public LocalDate getDataEfetivacao() {
         return efetivado ? dataCriacao : null;
     }
+
     public double getImpostoEstadual() {
-         return this.valorImpostos * 0.6; // 60% do total de impostos
+        return this.valorImpostos * 0.6; // 60% do total de impostos
     }
 
     public double getImpostoFederal() {
-           return this.valorImpostos * 0.4; // 40% do total de impostos
+        return this.valorImpostos * 0.4; // 40% do total de impostos
     }
 }
