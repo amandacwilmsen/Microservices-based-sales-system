@@ -12,7 +12,7 @@ spring:
           lower-case-service-id: true
       routes:
         - id: vendas-route
-          uri: lb://vendas-monolito
+          uri: lb://vendas-microservice
           predicates:
             - Path=/api/vendas/**
           filters:

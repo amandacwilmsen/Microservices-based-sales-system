@@ -30,9 +30,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:http://localhost:8761/eureka/}
+    fetch-registry: true
+    register-with-eureka: true
   instance:
     prefer-ip-address: true
+    hostname: registro-microservice
 
 management:
   endpoints:
@@ -42,4 +45,4 @@ management:
 
 logging:
   level:
-    com.vendas.registro: DEBUG
+    "[com.vendas.registro]": DEBUG

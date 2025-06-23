@@ -1,39 +1,51 @@
 spring:
   application:
-    name: vendas-monolito
+    name: vendas-microservice
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest
-
-server:
-  port: 8083
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-jpa:
-  hibernate:
-    ddl-auto: update
-  properties:
+  jpa:
     hibernate:
-      jdbc:
-        lob:
-          non_contextual_creation: true
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            "[non_contextual_creation]": true
   sql:
     init:
       mode: always
       platform: h2
+  datasource:
+    url: jdbc:h2:mem:vendasdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
 
-datasource:
-  url: jdbc:h2:mem:vendasdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-  driver-class-name: org.h2.Driver
-  username: sa
-  password:
+server:
+  port: 8083
+  servlet:
+    context-path: /vendas
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:http://service-registry:8761/eureka/}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+    hostname: vendas-microservice
 
 logging:
   level:
-    org.hibernate.SQL: DEBUG
+    "[org.hibernate.SQL]": DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

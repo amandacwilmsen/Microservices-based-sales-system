@@ -53,6 +53,7 @@ services:
 
   impostos-microservice:
     build: ./impostos-microservice
+    container_name: impostos-microservice
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka
     depends_on:
@@ -63,7 +64,16 @@ services:
     ports:
       - "8082"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8082/actuator/health"]
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://localhost:8082/actuator/health",
+          "||",
+          "exit",
+          "1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -125,7 +135,16 @@ services:
     networks:
       - microservices-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://localhost:8084/actuator/health",
+          "||",
+          "exit",
+          "1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 5

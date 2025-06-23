@@ -10,10 +10,12 @@ import com.vendas.registro.repository.OrcamentoAprovadoHistoricoRepository;
 @Component
 public class OrcamentoEfetivadoListener {
 
+    private static final String QUEUE_NAME = "orcamento.efetivado.v1";
+
     @Autowired
     private OrcamentoAprovadoHistoricoRepository historicoRepository;
 
-    @RabbitListener(queues = "orcamento.efetivado.v1")
+    @RabbitListener(queues = QUEUE_NAME)
     public void receiveOrcamentoEfetivado(OrcamentoEfetivadoEvent event) {
         OrcamentoAprovadoHistorico historico = new OrcamentoAprovadoHistorico(
             event.dataEfetivacao(),
