@@ -66,7 +66,7 @@ public class EfetivarOrcamentoService {
         logger.info("Orçamento efetivado com sucesso. ID: {}", id);
 
         BigDecimal valorFinal = BigDecimal.valueOf(orcamento.getTotalFinal());
-        BigDecimal valorImpostos = BigDecimal.valueOf(orcamento.getImpostoEstadual() + orcamento.getImpostoFederal());
+        BigDecimal valorImpostos = BigDecimal.valueOf(orcamento.getValorImpostos());
 
         RegistroOrcamentoEvent event = new RegistroOrcamentoEvent(
                 orcamento.getDataCriacao().atStartOfDay(),

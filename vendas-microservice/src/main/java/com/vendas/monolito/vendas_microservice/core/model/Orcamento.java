@@ -177,4 +177,13 @@ public class Orcamento {
     public LocalDate getDataEfetivacao() {
         return efetivado ? dataCriacao : null;
     }
+    
+    // Métodos de compatibilidade para substituir impostoEstadual e impostoFederal
+    public double getImpostoEstadual() {
+        return valorImpostos / 2.0; // Dividindo o valor entre estadual e federal
+    }
+    
+    public double getImpostoFederal() {
+        return valorImpostos / 2.0; // Dividindo o valor entre estadual e federal
+    }
 }

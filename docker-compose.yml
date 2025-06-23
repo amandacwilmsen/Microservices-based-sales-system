@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   rabbitmq:
@@ -79,6 +79,10 @@ services:
       - SPRING_RABBITMQ_PORT=5672
       - SPRING_RABBITMQ_USERNAME=guest
       - SPRING_RABBITMQ_PASSWORD=guest
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:vendasdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=
     depends_on:
       service-registry:
         condition: service_healthy
@@ -87,7 +91,17 @@ services:
     networks:
       - microservices-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--spider",
+          "http://localhost:8083/actuator/health",
+          "||",
+          "exit",
+          "1",
+        ]
       interval: 30s
       timeout: 10s
       retries: 5

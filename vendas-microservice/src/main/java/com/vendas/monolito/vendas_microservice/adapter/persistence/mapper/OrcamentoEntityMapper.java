@@ -1,11 +1,13 @@
 package com.vendas.monolito.vendas_microservice.adapter.persistence.mapper;
 
-import com.vendas.monolito.vendas_microservice.adapter.persistence.entity.OrcamentoEntity;
-import com.vendas.monolito.vendas_microservice.core.model.Orcamento;
-import lombok.RequiredArgsConstructor;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
+import com.vendas.monolito.vendas_microservice.adapter.persistence.entity.OrcamentoEntity;
+import com.vendas.monolito.vendas_microservice.core.model.Orcamento;
+
+import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
@@ -32,8 +34,10 @@ public class OrcamentoEntityMapper {
             orcamentoEntity.getItens().forEach(item -> item.setOrcamento(orcamentoEntity));
         }
         orcamentoEntity.setTotalItens(orcamento.getTotalItens());
-        orcamentoEntity.setImpostoEstadual(orcamento.getImpostoEstadual());
-        orcamentoEntity.setImpostoFederal(orcamento.getImpostoFederal());
+        // Dividindo o valor total de impostos entre estadual e federal para compatibilidade
+        double metadeImpostos = orcamento.getValorImpostos() / 2.0;
+        orcamentoEntity.setImpostoEstadual(metadeImpostos);
+        orcamentoEntity.setImpostoFederal(metadeImpostos);
         orcamentoEntity.setDesconto(orcamento.getDesconto());
         orcamentoEntity.setTotalFinal(orcamento.getTotalFinal());
         return orcamentoEntity;
@@ -44,7 +48,7 @@ public class OrcamentoEntityMapper {
             return null;
         }
 
-        return new Orcamento(
+        Orcamento orcamento = new Orcamento(
                 entity.getId(),
                 entity.getNomeCliente(),
                 entity.getData(),
@@ -55,10 +59,12 @@ public class OrcamentoEntityMapper {
                         .collect(Collectors.toList()),
                 entity.isEfetivado(),
                 entity.getTotalItens(),
-                entity.getImpostoEstadual(),
-                entity.getImpostoFederal(),
+                // Somando impostoEstadual e impostoFederal para obter valorImpostos
+                entity.getImpostoEstadual() + entity.getImpostoFederal(),
                 entity.getDesconto(),
                 entity.getTotalFinal()
         );
+        
+        return orcamento;
     }
 }

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: vendas-microservice
+    name: vendas-monolito
   rabbitmq:
     host: localhost
     port: 5672

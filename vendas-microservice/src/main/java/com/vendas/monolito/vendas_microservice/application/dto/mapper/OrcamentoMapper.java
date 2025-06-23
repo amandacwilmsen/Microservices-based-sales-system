@@ -3,7 +3,6 @@ package com.vendas.monolito.vendas_microservice.application.dto.mapper;
 import com.vendas.monolito.vendas_microservice.application.dto.request.OrcamentoRequest;
 import com.vendas.monolito.vendas_microservice.application.dto.response.OrcamentoResponse;
 import com.vendas.monolito.vendas_microservice.core.model.Orcamento;
-import org.aspectj.weaver.ast.Or;
 
 public class OrcamentoMapper {
 
@@ -26,8 +25,8 @@ public class OrcamentoMapper {
                 orcamento.getItens(),
                 orcamento.isEfetivado(),
                 orcamento.getTotalItens(),
-                orcamento.getImpostoEstadual(),
-                orcamento.getImpostoFederal(),
+                orcamento.getImpostoEstadual(), // Usando o método de compatibilidade
+                orcamento.getImpostoFederal(), // Usando o método de compatibilidade
                 orcamento.getDesconto(),
                 orcamento.getTotalFinal()
         );
