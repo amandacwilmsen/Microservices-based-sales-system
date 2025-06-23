@@ -56,6 +56,22 @@ public class Orcamento {
         this.valorImpostos = valorImpostos;
         this.desconto = desconto;
         this.totalFinal = totalFinal;
+
+    public Orcamento(Long id, String cliente, LocalDate dataCriacao, String estado, String pais,
+                    List<ItemOrcamento> itens, boolean efetivado, double totalItens,
+                    double impostoEstadual, double impostoFederal, double desconto, double totalFinal) {
+        this.id = id;
+        this.cliente = cliente;
+        this.dataCriacao = dataCriacao;
+        this.estado = estado;
+        this.pais = pais;
+        this.itens = itens;
+        this.efetivado = efetivado;
+        this.totalItens = totalItens;
+        this.valorImpostos = impostoEstadual + impostoFederal;
+        this.desconto = desconto;
+        this.totalFinal = totalFinal;
+    }
     }
 
     public BigDecimal getSubtotal() {
@@ -176,5 +192,12 @@ public class Orcamento {
 
     public LocalDate getDataEfetivacao() {
         return efetivado ? dataCriacao : null;
+    }
+    public double getImpostoEstadual() {
+         return this.valorImpostos * 0.6; // 60% do total de impostos
+    }
+
+    public double getImpostoFederal() {
+           return this.valorImpostos * 0.4; // 40% do total de impostos
     }
 }
