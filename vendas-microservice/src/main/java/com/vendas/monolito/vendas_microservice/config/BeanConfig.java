@@ -1,12 +1,25 @@
 package com.vendas.monolito.vendas_microservice.config;
 
-import com.vendas.monolito.vendas_microservice.application.usecases.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.vendas.monolito.vendas_microservice.adapter.messaging.OrcamentoEventProducer;
+import com.vendas.monolito.vendas_microservice.application.usecases.ConsultarEstoqueUseCase;
+import com.vendas.monolito.vendas_microservice.application.usecases.EfetivarOrcamentoUseCase;
+import com.vendas.monolito.vendas_microservice.application.usecases.EntradaEstoqueUseCase;
+import com.vendas.monolito.vendas_microservice.application.usecases.ListarEstoqueUseCase;
+import com.vendas.monolito.vendas_microservice.application.usecases.ListarOrcamentosEfetivadosUseCase;
+import com.vendas.monolito.vendas_microservice.application.usecases.ListarProdutoUseCase;
+import com.vendas.monolito.vendas_microservice.application.usecases.SolicitarOrcamentoUseCase;
 import com.vendas.monolito.vendas_microservice.core.repository.EstoqueInterface;
 import com.vendas.monolito.vendas_microservice.core.repository.OrcamentoInterface;
 import com.vendas.monolito.vendas_microservice.core.repository.ProdutoInterface;
-import com.vendas.monolito.vendas_microservice.core.service.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.vendas.monolito.vendas_microservice.core.service.EfetivarOrcamentoService;
+import com.vendas.monolito.vendas_microservice.core.service.EstoqueService;
+import com.vendas.monolito.vendas_microservice.core.service.ImpostoService;
+import com.vendas.monolito.vendas_microservice.core.service.ListarOrcamentosService;
+import com.vendas.monolito.vendas_microservice.core.service.ListarProdutoService;
+import com.vendas.monolito.vendas_microservice.core.service.SolicitarOrcamentoService;
 
 @Configuration
 public class BeanConfig {
@@ -23,8 +36,12 @@ public class BeanConfig {
     }
 
     @Bean
-    public EfetivarOrcamentoService efetivarOrcamentoService(OrcamentoInterface orcamentoInterface, EstoqueInterface estoqueInterface, ProdutoInterface produtoInterface) {
-        return new EfetivarOrcamentoService(orcamentoInterface, estoqueInterface, produtoInterface);
+    public EfetivarOrcamentoService efetivarOrcamentoService(
+            OrcamentoInterface orcamentoInterface, 
+            EstoqueInterface estoqueInterface, 
+            ProdutoInterface produtoInterface,
+            OrcamentoEventProducer orcamentoEventProducer) {
+        return new EfetivarOrcamentoService(orcamentoInterface, estoqueInterface, produtoInterface, orcamentoEventProducer);
     }
 
     @Bean
